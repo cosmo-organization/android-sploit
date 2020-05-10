@@ -37,6 +37,7 @@ class DeviceConnection(ADB):
     #Forward tcp
     def forward_tcp(self,_connected_device_name,_port_device,_forward_port):
         self.adb_c(f"-s {_connected_device_name} forward tcp:{_port_device} tcp:{_forward_port}")
+#This class used for performing various types of android operation
 class AndroidOperation(DeviceConnection):
     def __init__(self):
         self.adb="adb "
@@ -53,12 +54,12 @@ class AndroidOperation(DeviceConnection):
     #Record screen for sometimes and store in _where_to_store="C:\Your Name\Your Directory"
     def screen_recording(self,_connected_device_name,_where_to_store,_time_limit):
         self.adb_c(f'-s {_connected_device_name} shell screenrecord --time-limit storage/emulated/legacy/rcX.mp4')
-        self.adb_c(f"-s {_connected_device_name} pull storage/emulated/legacy/rcX.mp4 {_where_to_store}")
+        self.adb_c(f"-s {_connected_device_name} pull storage/emulated/legacy/rcX.mp4 '{_where_to_store}'")
         self.adb_c(f"-s {_connected_device_name} shell rm storage/emulated/legacy/rcX.mp4")
     #Take Screen Short of device and store in your computer
     def screen_short(self,_connected_device_name,_where_to_store):
         self.adb_c(f"-s {_connected_device_name} shell screencap storage/emulated/legacy/rcxI.png")
-        self.adb_c(f"-s {_connected_device_name} pull storage/emulated/legacy/rcxI.png "+_where_to_store)
+        self.adb_c(f"-s {_connected_device_name} pull storage/emulated/legacy/rcxI.png {_where_to_store}")
         self.adb_c(f"-s {_connected_device_name} shell rm storage/emulated/legacy/rcxI.png")
     #Show all list of files and folder in connected device specify _parent_folder="/storage/" or"your choice how much you know"
     def show_list_files_and_directories(self,_connected_device_name,_parent_folder):
@@ -85,9 +86,9 @@ class AndroidOperation(DeviceConnection):
     def launch_app(self,_connected_device_name,_app_package):
         self.adb_c(f"-s {_connected_device_name} shell monkey -p {_app_package} -v 500")
     #Grab wpa
-    def grab_wpa(self,_connected_device_name,_location,_callable):
+    def grab_wpa(self,_connected_device_name,_location,_callable,_su):
         try:
-            self.adb_c(f"-s { _connected_device_name } shell " + "su -c 'cp /data/misc/wifi/wpa_supplicant.conf /storage/emulated/legacy'")
+            self.adb_c(f"-s { _connected_device_name } shell {_su} -c 'cp /data/misc/wifi/wpa_supplicant.conf /storage/emulated/legacy'")
             self.adb_c(f"-s { _connected_device_name } pull /storage/emulated/legacy/wpa_supplicant.conf {_location}")
         except KeyboardInterrupt:
             _callable()
@@ -108,12 +109,12 @@ class AndroidOperation(DeviceConnection):
     def wifi_activation(self,_connected_device_name,_wifi_status):
         self.adb_c(f"-s {_connected_device_name} shell svc wifi {_wifi_status}")
     #Remote lockscreen safely
-    def remove_screen_lock(self,_connected_device_name):
-        self.adb_c(f"-s {_connected_device_name} shell su 'rm /data/system/gesture.key'")
-        self.adb_c(f"-s { _connected_device_name } shell su 'rm /data/system/password.key'")
-        self.adb_c(f"-s { _connected_device_name } shell su 'rm /data/system/locksettings.db'")
-        self.adb_c(f"-s { _connected_device_name } shell su 'rm /data/system/locksettings.db-wal'")
-        self.adb_c(f"-s { _connected_device_name } shell su 'rm /data/system/locksettings.db-shm'")
+    def remove_screen_lock(self,_connected_device_name,_su):
+        self.adb_c(f"-s {_connected_device_name} shell {_su} rm /data/system/gesture.key")
+        self.adb_c(f"-s {_connected_device_name} shell {_su} rm /data/system/password.key")
+        self.adb_c(f"-s {_connected_device_name} shell {_su} rm /data/system/locksettings.db")
+        self.adb_c(f"-s {_connected_device_name} shell {_su} rm /data/system/locksettings.db-wal")
+        self.adb_c(f"-s {_connected_device_name} shell {_su} rm /data/system/locksettings.db-shm")
     #Press key by key code
     def press_key(self,_connected_device_name,_key_code):
         self.adb_c(f"-s {_connected_device_name} shell input keyevent "+_key_code)
@@ -134,6 +135,13 @@ class AndroidOperation(DeviceConnection):
         self.press_key(_connected_device_name,"66")
     def send_email(self,_connected_device_name,_to,_subject,_body):
         self.adb_c(f"-s {_connected_device_name} shell am start -n com.google.android.gm/com.google.android.gm.ComposeActivityGmail -d email:{_to} --es subject '{_subject}' --es body '{_body}'")
+    def get_prop(self,_connected_device_name):
+        self.adb_c(f"-s {_connected_device_name} shell getprop")
+    def reboot_recovery(self,_connected_device_name):
+        self.adb_c(f"-s {_connected_device_name} reboot-recovery")
+    def reboot_fastboot(self,_connected_device_name):
+        self.adb_c(f"-s {_connected_device_name} reboot fastboot")
+
 class ConsoleWindow:
     def __init__(self):
         pass
