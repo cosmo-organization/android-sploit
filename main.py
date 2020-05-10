@@ -1,6 +1,5 @@
 from com.cosmo.sploit.tools import ADB,DeviceConnection,AndroidOperation,ConsoleWindow
 import os
-import random
 import time as t
 from colorama import Fore, init
 #API initialization
@@ -9,6 +8,7 @@ adb=ADB()
 dc=DeviceConnection()
 ao=AndroidOperation()
 #End api initialization
+#Git PhoneSploit github
 CurrentDir = os.path.dirname(os.path.abspath(__file__))
 load_count = 0
 arrow = Fore.RED + " âââ>" + Fore.WHITE
