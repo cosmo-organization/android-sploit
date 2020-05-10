@@ -1,1 +1,0 @@
-print("A virtual Company : cosmo")
