@@ -7,7 +7,7 @@ pip install colorama<br>
 python main.py<br>
 or use com.cosmo.sploit.tools to embed in your own application
 # Prequisite on Linux
-# Ski adb.rar for Linux
+# Skip adb.rar for Linux
 pip install colorama<br>
 python3 main.py<br>
 or use com.cosmo.sploit.tools to embed in your own application
