@@ -8,7 +8,6 @@ adb=ADB()
 dc=DeviceConnection()
 ao=AndroidOperation()
 #End api initialization
-#Git PhoneSploit github
 CurrentDir = os.path.dirname(os.path.abspath(__file__))
 load_count = 0
 arrow = Fore.RED + " âââ>" + Fore.WHITE
@@ -22,7 +21,7 @@ page_1 = '''\n
 {0}[{1}5{0}] {2}Install an apk on a phone   {0}[{1}10{0}] {2}Turn The Device off                {0}[{1}15{0}] {2}Run an app                         
 
 
-{0}[{1}99{0}] {2}Exit   {0}[{1}0{0}] {2}Clear   {0}[{1}p{0}] Next Page                           v1.2
+{0}[{1}99{0}] {2}Exit   {0}[{1}0{0}] {2}Clear   {0}[{1}p{0}] Next Page                           v1.2 {0}[{1}super_on/off{0}] To Switch mode to su or none su
 '''.format(Fore.CYAN, Fore.RED, Fore.GREEN)
 
 page_2 = '''\n
@@ -33,53 +32,58 @@ page_2 = '''\n
 {0}[{1}20{0}]{2} Get Battery Status             {0}[{1}25{0}]{2} Get Current Activity                  
 
 
-{0}[{1}99{0}] {2}Exit   {0}[{1}0{0}] {2}Clear   {0}[{1}b{0}] Back to page one
+{0}[{1}99{0}] {2}Exit   {0}[{1}0{0}] {2}Clear   {0}[{1}b{0}] Back to page one  {0}[{1}super_on/off{0}] To Switch mode to su or none su 
 '''.format(Fore.CYAN, Fore.RED, Fore.GREEN)
 
 
 # =============================
 # Main
 def main():
+    superUserMode=''
     page_num = 1
-    option = input(Fore.WHITE + "phonesploit" + Fore.RED + "(main_menu) " + Fore.WHITE + "> ")
+    option = input(Fore.WHITE + "ASploit" + Fore.RED + "(main_menu) " + Fore.WHITE + "> ")
     if option == '1':
         dc.show_all_connected_device()
     elif option == '2':
         dc.disconnect_all_device()
     elif option == '3':
-        print(("\n[{0}+{1}] Enter a phones ip address.").format(Fore.RED, Fore.WHITE))
-        _ip = input(arrow + " phonesploit" + Fore.RED + "(connect_phone) IP" + Fore.WHITE + "> ")
-        _port = input(arrow + " phonesploit" + Fore.RED + "(connect_phone) PORT" + Fore.WHITE + "> ")
+        print("\n[{0}+{1}] Enter a phones ip address.".format(Fore.RED, Fore.WHITE))
+        _ip = input(arrow + " ASploit" + Fore.RED + "(connect_phone) IP" + Fore.WHITE + "> ")
+        _port = input(arrow + " ASploit" + Fore.RED + "(connect_phone) PORT" + Fore.WHITE + "> ")
         dc.connect_new_device(_ip,_port)
+    elif option == 'super_on':
+        superUserMode='su'
+    elif option == 'super_off':
+        superUserMode=''
     elif option == '4':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(shell_on_phone) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(shell_on_phone) " + Fore.WHITE + "> ")
         ao.open_device_console(device_name)
     elif option == 'clear':
         cw.clear_src()
     elif option == '5':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(apk_install) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(apk_install) " + Fore.WHITE + "> ")
         print(("     " + connect))
         print(("    [{0}+{1}]Enter the apk location.").format(Fore.RED, Fore.WHITE))
-        apk_location = input("    " + arrow + "phonesploit" + Fore.RED + "(apk_install) " + Fore.WHITE + "> ")
+        apk_location = input("    " + arrow + "ASploit" + Fore.RED + "(apk_install) " + Fore.WHITE + "> ")
         ao.install_apk(_connected_device_name=device_name,_installable_apk_location=apk_location)
         print(Fore.GREEN + "Apk has been installed.")
     elif option == '6':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(screen_record) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(screen_record) " + Fore.WHITE + "> ")
         print(("     " + connect))
         print(("    [{0}+{1}] Please wait 3m its recording").format(Fore.RED, Fore.WHITE))
         print(("     " + connect))
         print(("    [{0}+{1}]Enter where you would like the video to be saved.").format(Fore.RED, Fore.WHITE))
-        place_location = input("    " + arrow + "phonesploit" + Fore.RED + "(screen_record) " + Fore.WHITE + "> ")
+        place_location = input("    " + arrow + "ASploit" + Fore.RED + "(screen_record) " + Fore.WHITE + "> ")
         ao.screen_recording(device_name,place_location)
     elif option == '7':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(screenshot) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(screenshot) " + Fore.WHITE + "> ")
         print(("     " + connect))
         print(("    [{0}+{1}]Enter where you would like the screenshot to be saved.").format(Fore.RED, Fore.WHITE))
-        place_location = input("    " + arrow + "phonesploit" + Fore.RED + "(screenshot) " + Fore.WHITE + "> ")
+        place_location = input("    " + arrow + "ASploit" + Fore.RED + "(screenshot) " + Fore.WHITE + "> ")
         ao.screen_short(device_name,place_location)
 
     elif option == '8':
@@ -87,113 +91,113 @@ def main():
 
     elif option == '9':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(file_pull) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(file_pull) " + Fore.WHITE + "> ")
         print(("     " + connect))
         print(("    [{0}+{1}]Enter a file location on a device").format(Fore.RED, Fore.WHITE))
-        file_location = input("    " + arrow + "phonesploit" + Fore.RED + "(file_pull) " + Fore.WHITE + "> ")
+        file_location = input("    " + arrow + "ASploit" + Fore.RED + "(file_pull) " + Fore.WHITE + "> ")
         print(("        " + connect))
         print(("       [{0}+{1}]Enter where you would like the file to be saved.").format(Fore.RED, Fore.WHITE))
-        place_location = input("       " + arrow + "phonesploit" + Fore.RED + "(file_pull) " + Fore.WHITE + "> ")
+        place_location = input("       " + arrow + "ASploit" + Fore.RED + "(file_pull) " + Fore.WHITE + "> ")
         ao.import_file(device_name,file_location,place_location)
     elif option == '10':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(device_reboot) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(device_reboot) " + Fore.WHITE + "> ")
         ao.reboot_device(device_name)
     elif option == '11':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(app_delete) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(app_delete) " + Fore.WHITE + "> ")
         print(("     " + connect))
         print(("    [{0}+{1}]Enter a package name.").format(Fore.RED, Fore.WHITE))
-        package_name = input("    " + arrow + "phonesploit" + Fore.RED + "(app_delete) " + Fore.WHITE + "> ")
+        package_name = input("    " + arrow + "ASploit" + Fore.RED + "(app_delete) " + Fore.WHITE + "> ")
         ao.uninstall_app(device_name,package_name)
     elif option == '12':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(log) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(log) " + Fore.WHITE + "> ")
         ao.show_all_log_cat(device_name)
     elif option == '13':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(sys_info) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(sys_info) " + Fore.WHITE + "> ")
         ao.show_system_info(device_name)
 
     elif option == '14':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(package_manager) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(package_manager) " + Fore.WHITE + "> ")
         ao.package_manager(device_name)
         main()
 
     elif option == '15':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(app_run) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(app_run) " + Fore.WHITE + "> ")
         print(("     " + connect))
         print(("    [{0}+{1}]Enter a package name. They look like this --> com.snapchat.android").format(Fore.RED,
                                                                                                          Fore.WHITE))
-        package_name = input("    " + arrow + "phonesploit" + Fore.RED + "(app_run) " + Fore.WHITE + "> ")
+        package_name = input("    " + arrow + "ASploit" + Fore.RED + "(app_run) " + Fore.WHITE + "> ")
         ao.launch_app(device_name,package_name)
         main()
     elif option == '16':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(port_forward) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(port_forward) " + Fore.WHITE + "> ")
         print(("     " + connect))
         print(("    [{0}+{1}]Enter a port on the device.").format(Fore.RED, Fore.WHITE))
-        port_device = input("    " + arrow + "phonesploit" + Fore.RED + "(port_forward) " + Fore.WHITE + "> ")
+        port_device = input("    " + arrow + "ASploit" + Fore.RED + "(port_forward) " + Fore.WHITE + "> ")
         print(("         " + connect))
         print(("        [{0}+{1}]Enter a port to forward it too.").format(Fore.RED, Fore.WHITE))
-        forward_port = input("        " + arrow + "phonesploit" + Fore.RED + "(port_forward) " + Fore.WHITE + "> ")
+        forward_port = input("        " + arrow + "ASploit" + Fore.RED + "(port_forward) " + Fore.WHITE + "> ")
         os.system("adb -s " + device_name + " forward tcp:" + port_device + " tcp:" + forward_port)
         dc.forward_tcp(device_name,port_device,forward_port)
 
     elif option == '17':
         try:
             print(("[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-            device_name = input(arrow + "phonesploit" + Fore.RED + "(wpa_grab) " + Fore.WHITE + "> ")
+            device_name = input(arrow + "ASploit" + Fore.RED + "(wpa_grab) " + Fore.WHITE + "> ")
             print((Fore.WHITE + "    [{0}+{1}]{1}THE DEVICE NEEDS TO BE ROOTED TO CONTINUE TO EXIT USE CTRL +C").format(
                 Fore.RED, Fore.WHITE))
             print(("     " + connect))
             print(("    [{0}+{1}]Enter where you want the file to be saved.").format(Fore.RED, Fore.WHITE))
-            location = input("    " + arrow + "phonesploit" + Fore.RED + "(wpa_grab) " + Fore.WHITE + "> ")
+            location = input("    " + arrow + "ASploit" + Fore.RED + "(wpa_grab) " + Fore.WHITE + "> ")
             ao.grab_wpa(device_name,location)
         except KeyboardInterrupt:
             main()
 
     elif option == '18':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(mac_inet) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(mac_inet) " + Fore.WHITE + "> ")
         ao.show_wlan0_ip(device_name)
         main()
 
     elif option == '19':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(pull_apk) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(pull_apk) " + Fore.WHITE + "> ")
         print(("     " + connect))
         print(("    [{0}+{1}]Enter a package name. They look like this --> com.snapchat.android").format(Fore.RED,
                                                                                                          Fore.WHITE))
-        package_name = input("    " + arrow + "phonesploit" + Fore.RED + "(pull_apk) " + Fore.WHITE + "> ")
+        package_name = input("    " + arrow + "ASploit" + Fore.RED + "(pull_apk) " + Fore.WHITE + "> ")
         print(("         " + connect))
         print((
                   "        [{0}+{1}]Enter The path.looks like this /data/app/com.snapchat.android-qWgDcBiCEvANq6op_NPqeA==/base.apk").format(
             Fore.RED, Fore.WHITE))
-        path = input("        " + arrow + "phonesploit" + Fore.RED + "(pull_apk) " + Fore.WHITE + "> ")
+        path = input("        " + arrow + "ASploit" + Fore.RED + "(pull_apk) " + Fore.WHITE + "> ")
         print(("             " + connect))
         print(("            [{0}+{1}]Enter The location to store the apk: ").format(Fore.RED, Fore.WHITE))
-        location = input("            " + arrow + "phonesploit" + Fore.RED + "(pull_apk) " + Fore.WHITE + "> ")
+        location = input("            " + arrow + "ASploit" + Fore.RED + "(pull_apk) " + Fore.WHITE + "> ")
         ao.pull_apk(device_name,package_name,location,path)
         main()
 
     elif option == '20':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(battery) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(battery) " + Fore.WHITE + "> ")
         ao.battery_info(device_name)
         main()
 
     elif option == '21':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(net_stat) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(net_stat) " + Fore.WHITE + "> ")
         ao.net_status(device_name)
         main()
 
     elif option == '22':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(wifi) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(wifi) " + Fore.WHITE + "> ")
         print(("     " + connect))
         print(("    [{0}+{1}] To turn wifi back on you need the device to be pluged in.").format(Fore.RED, Fore.WHITE))
         print(("     " + connect))
@@ -207,18 +211,18 @@ def main():
 
     elif option == '23':
         print(("[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(pass_remove) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(pass_remove) " + Fore.WHITE + "> ")
         print((
                           Fore.WHITE + "    [{0}+{1}]{1}THE DEVICE NEEDS TO BE ROOTED TO CONTINUE TO EXIT USE CTRL +C THIS IS ALSO UNTESTED").format(
             Fore.RED, Fore.WHITE))
         print(("     " + connect))
         print(Fore.RED + "******************TRYING TO REMOVE PASS******************")
-        ao.remove_screen_lock(device_name)
+        ao.remove_screen_lock(device_name,superUserMode)
         print(Fore.RED + "******************TRYING TO REMOVE PASS******************")
 
     elif option == '24':
         print(("[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(keycode) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(keycode) " + Fore.WHITE + "> ")
         print('''
 0 -->  "KEYCODE_UNKNOWN" 
 1 -->  "KEYCODE_MENU" 
@@ -308,12 +312,12 @@ def main():
 85 -->  "TAG_LAST_KEYCODE"        
         ''')
         print(("[{0}+{1}]Enter a number.").format(Fore.RED, Fore.WHITE))
-        num = input(arrow + "phonesploit" + Fore.RED + "(keycode) " + Fore.WHITE + "> ")
+        num = input(arrow + "ASploit" + Fore.RED + "(keycode) " + Fore.WHITE + "> ")
         ao.press_key(device_name,num)
 
     elif option == '25':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(current_activity) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(current_activity) " + Fore.WHITE + "> ")
         ao.show_current_activity(device_name)
         main()
     elif option == '26':
@@ -324,8 +328,8 @@ def main():
         main()
     elif option == '28':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
-        device_name = input(arrow + "phonesploit" + Fore.RED + "(files_and_folder_list/device_name) " + Fore.WHITE + "> ")
-        parent = input(arrow + "phonesploit" + Fore.RED + "(files_and_folder_list/parent_folder) " + Fore.WHITE + "> ")
+        device_name = input(arrow + "ASploit" + Fore.RED + "(files_and_folder_list/device_name) " + Fore.WHITE + "> ")
+        parent = input(arrow + "ASploit" + Fore.RED + "(files_and_folder_list/parent_folder) " + Fore.WHITE + "> ")
         ao.show_list_files_and_directories(device_name,parent)
         main()
     elif option == '0':
@@ -336,13 +340,12 @@ def main():
             clear(page_1)
 
     elif option == 'p':
-        os.system('cls')
+        cw.clear_src()
         page2 = True
-        print(Fore.RED + banner_title)
         print(page_2)
 
     elif option == 'b':
-        os.system('cls')
+        cw.clear_src()
         page2 = False
         print(page_1)
 
