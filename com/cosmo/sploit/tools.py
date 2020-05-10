@@ -4,7 +4,6 @@ import platform
 class ADB:
     def __init__(self):
         self.adb="adb "
-        os.system(self.adb+"start-server")
     def configure(self):
         if platform.platform().capitalize().startswith("WIN"):
             os.chdir("\\adb\\")
@@ -120,7 +119,9 @@ class AndroidOperation(DeviceConnection):
     #show current activity on android device
     def show_current_activity(self,_connected_device_name):
         self.adb_c("-s "+_connected_device_name+" shell dumpsys activity")
-
+    #Hide or unhide application app_pkg="com.app.example" visibility ="hide" or "unhide"
+    def app_visibility(self,_connected_device_name,_app_pkg,_visibility):
+        self.adb_c("-s "+_connected_device_name+" shell pm "+_visibility+" "+_app_pkg)
 class ConsoleWindow:
     def __init__(self):
         pass
