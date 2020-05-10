@@ -1,4 +1,5 @@
 # Example to embed com.cosmo.sploit.tools api
+#Written by Sonu Aryan
 from com.cosmo.sploit.tools import AndroidOperation,DeviceConnection,ConsoleWindow,ADB
 adb=ADB()#Server already started on initialization this feature will remove in future
 adb.configure()#For platform & tools validation
