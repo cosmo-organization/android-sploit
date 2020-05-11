@@ -27,7 +27,8 @@ from com.cosmo.sploit.tools import Session,ADB<br>
 adb=ADB()<br>
 adb.start_server()<br>
 s=Session("localhost","62001") #  62001 port is only work for Nox 5555 for android devices and enter IP address<br>
+s.set_shell_mode(_mode="") # su is used for super user mode use _mode='su' on super user supported device or emulater<br>
 s.start_session()<br>
-s.remove_screen_lock(s.get_device(),_su='') # su is used for super user mode use _su='su' on super user supported device or emulater<br>
+s.remove_screen_lock(s.get_device()) <br>
 adb.kill_server()<br>
 
