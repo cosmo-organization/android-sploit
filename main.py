@@ -3,7 +3,6 @@ import os
 import time as t
 from colorama import Fore, init
 #API initialization
-cw=ConsoleWindow()
 adb=ADB()
 dc=DeviceConnection()
 ao=AndroidOperation()
@@ -39,7 +38,7 @@ page_2 = '''\n
 # =============================
 # Main
 def main():
-    superUserMode=''
+    ao.set_shell_mode(_mode="")
     page_num = 1
     option = input(Fore.WHITE + "ASploit" + Fore.RED + "(main_menu) " + Fore.WHITE + "> ")
     if option == '1':
@@ -52,15 +51,15 @@ def main():
         _port = input(arrow + " ASploit" + Fore.RED + "(connect_phone) PORT" + Fore.WHITE + "> ")
         dc.connect_new_device(_ip,_port)
     elif option == 'super_on':
-        superUserMode='su'
+        ao.set_shell_mode(_mode="su")
     elif option == 'super_off':
-        superUserMode=''
+        ao.set_shell_mode(_mode="")
     elif option == '4':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
         device_name = input(arrow + "ASploit" + Fore.RED + "(shell_on_phone) " + Fore.WHITE + "> ")
         ao.open_device_console(device_name)
     elif option == 'clear':
-        cw.clear_src()
+        ConsoleWindow.clear_src()
     elif option == '5':
         print(("\n[{0}+{1}]Enter a device name.").format(Fore.RED, Fore.WHITE))
         device_name = input(arrow + "ASploit" + Fore.RED + "(apk_install) " + Fore.WHITE + "> ")
@@ -340,12 +339,12 @@ def main():
             clear(page_1)
 
     elif option == 'p':
-        cw.clear_src()
+        ConsoleWindow.clear_src()
         page2 = True
         print(page_2)
 
     elif option == 'b':
-        cw.clear_src()
+        ConsoleWindow.clear_src()
         page2 = False
         print(page_1)
 
@@ -372,7 +371,7 @@ try:
     print(Fore.RED + "Starting  adb server..")
     adb.start_server()
     t.sleep(4)
-    cw.clear_src()
+    ConsoleWindow.clear_src()
     print(page_1)
     main()
 except KeyboardInterrupt:
