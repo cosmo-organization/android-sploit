@@ -5,7 +5,7 @@ adb.start_server()
 sessionManager=SessionManager()
 sessionManager.add_session(Session("localhost","62001",_unique_session_id="screen_locked").start_session())
 s=sessionManager.get_session_unique("screen_locked")
-s.remove_screen_lock(s.get_device(),_su='')
+s.remove_screen_lock(s.get_device())
 try:
  s.reboot_device(s.get_device())
 except KeyboardInterrupt as e:
