@@ -37,6 +37,8 @@ class DeviceConnection(ADB):
     #Forward tcp
     def forward_tcp(self,_connected_device_name,_port_device,_forward_port):
         self.adb_c(f"-s {_connected_device_name} forward tcp:{_port_device} tcp:{_forward_port}")
+    def disconnect_device(self,_connected_device_name):
+        self.adb_c(f"disconnect {_connected_device_name}")
 #This class used for performing various types of android operation
 class AndroidOperation(DeviceConnection):
     def __init__(self):
@@ -147,3 +149,64 @@ class ConsoleWindow:
         pass
     def clear_src(self):
         os.system('cls')
+
+class Session(AndroidOperation):
+    def __init__(self,_host,_port,_unique_session_id=None):
+        self._host=_host
+        self._port=_port
+        self.closed=True
+        self._unique_session_id=_unique_session_id
+        self.adb="adb "
+    def start_session(self):
+        self.connect_new_device(self._host,self._port)
+        self.closed=False
+        return self
+    def get_device(self):
+        return self._host+":"+self._port
+    def stop_session(self):
+        self.disconnect_device(self.get_device())
+    def is_closed(self):
+        return self.closed
+    def get_session_id(self):
+        return self._unique_session_id
+class SessionManager:
+    def __init__(self):
+        self._sessions=[]
+    def add_session(self,_open_session):
+        self.sync_session()
+        if self.validate_session_id(_open_session):
+           self._sessions.append(_open_session)
+    def sync_session(self):
+        for _session in self._sessions:
+            if _session.is_closed():
+                self._sessions.remove(_session)
+    def validate_session_id(self,_open_session):
+        for _session in self._sessions:
+            if _open_session.get_session_id() is None:
+                return True
+            elif _session.get_session_id() is _open_session.get_session_id():
+                print(f"Session ID:{_open_session.get_session_id()} is duplicate")
+                return False
+        return True
+    def remove_session(self,_unique_session_id):
+        for _session in self._sessions:
+            if _session.get_session_id() is _unique_session_id:
+                self._sessions.remove(_session)
+    def remove_session(self,_open_session):
+        if _open_session.is_closed():
+          self._sessions.remove(_open_session)
+        else:
+            print("Session is opened can't remove session from SessionManager")
+    def get_session_unique(self,_unique_session_id):
+        for _session in self._sessions:
+            if _session.get_session_id() is _unique_session_id:
+                return _session
+    def get_session_index(self,_index):
+        return self._sessions[_index]
+    def close_all_session(self):
+        for _session in self._sessions:
+            _session.stop_session()
+    def remove_all_closed_session(self):
+        for _session in self._sessions:
+            if _session.is_closed():
+                self._sessions.remove(_session)
