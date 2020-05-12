@@ -4,6 +4,7 @@ cl.start_server()
 #For First Device
 cl.create_session(_host_ip="localhost",_host_port="62001",_id="1")
 cl.bind_active_session("1")
+cl.set_shell_mode(_mode="su")
 cl.remove_screen_lock()
 cl.bind_apk(_apk_location_on_computer="C:\\Users\\User Name\\YourDirectory\\File.apk")
 cl.install_apk()
@@ -18,6 +19,7 @@ cl.disconnect_device() # if this step execute then session id 1 is destroyed per
 
 cl.create_session(_host_ip="localhost",_host_port="5555",_id="1")
 cl.bind_active_session("1")
+cl.set_shell_mode(_mode="su")
 cl.remove_screen_lock()
 cl.bind_apk(_apk_location_on_computer="C:\\Users\\User Name\\YourDirectory\\Test.apk")
 cl.install_apk()
