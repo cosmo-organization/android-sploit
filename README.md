@@ -31,4 +31,13 @@ s.set_shell_mode(_mode="") # su is used for super user mode use _mode='su' on su
 s.start_session()<br>
 s.remove_screen_lock(s.get_device()) <br>
 adb.kill_server()<br>
-
+# Use our CodeLight tools for more interactive code
+# Example using CodeLight tool
+from com.cosmo.sploit.codelight.codelighttool import CodeLightTool<br>
+cl=CodeLightTool()<br>
+cl.start_server()<br>
+cl.create_session(_host_ip="localhost",_host_port="62001",_id="1")<br>
+cl.bind_active_session("1")<br>
+cl.remove_screen_lock()<br>
+cl.disconnect_device()<br>
+cl.stop_server()
