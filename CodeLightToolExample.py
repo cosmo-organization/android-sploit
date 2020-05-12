@@ -19,7 +19,7 @@ cl.bind_active_session("1")
 cl.remove_screen_lock()
 cl.bind_apk(_apk_location_on_computer="C:\\Users\\User Name\\YourDirectory\\Test.apk")
 cl.install_apk()
-cl.bind_app(_pkg="com.cosmo.android.tool.metasploit")
+cl.bind_app(_pkg="com.cosmo.android.tool.metasploit") #this package is already binded you can skip this step or bind your own package to continue
 cl.uninstall_app()
 cl.disconnect_device()
 
