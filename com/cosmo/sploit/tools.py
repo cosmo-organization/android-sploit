@@ -23,7 +23,7 @@ class ADB:
 class DeviceConnection(ADB):
     def __init__(self):
         self.adb="adb "
-        self._shell_mode=""
+        self._shell_mode="shell"
         return
     def set_shell_mode(self,_mode="su"):
         self._shell_mode="shell "+_mode
