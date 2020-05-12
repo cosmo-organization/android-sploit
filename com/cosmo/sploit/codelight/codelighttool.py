@@ -63,4 +63,7 @@ class CodeLightTool:
         self._binded_session.stop_session()
         self._session_manager.sync_session()
         self._binded_session=None
+    def set_shell_mode(self,_mode="su"):
+        self.__verify_session()
+        self._binded_session.set_shell_mode(_mode=_mode)
 
