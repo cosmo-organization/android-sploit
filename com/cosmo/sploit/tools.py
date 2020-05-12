@@ -23,10 +23,10 @@ class ADB:
 class DeviceConnection(ADB):
     def __init__(self):
         self.adb="adb "
-        self._shell_mode="shell"
+        self._shell_mode=""
         return
     def set_shell_mode(self,_mode="su"):
-        self._shell_mode=_mode
+        self._shell_mode="shell "+_mode
     def get_shell_mode(self):
         return self._shell_mode
     #Connect new device using IP:port of host
@@ -49,6 +49,7 @@ class AndroidOperation(DeviceConnection):
     def __init__(self):
         self.adb="adb "
         self._su=''
+        self._shell_mode="shell"
     def set_super_user_mode(self,_su):
         self._su=_su
     #Open shell of device parameter->_current_device_name="IP:port"
@@ -124,7 +125,7 @@ class AndroidOperation(DeviceConnection):
         os.system("fastboot")
         os.system("fastboot unlock oem")
     #Remove screen lock safely
-    def remove_screen_lock(self,_connected_device_name,_su):
+    def remove_screen_lock(self,_connected_device_name):
         self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} rm /data/system/gesture.key")
         self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} rm /data/system/password.key")
         self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} rm /data/system/locksettings.db")
@@ -171,6 +172,7 @@ class Session(AndroidOperation):
         self.closed=True
         self._unique_session_id=_unique_session_id
         self.adb="adb "
+        self._time_limit=None
     def start_session(self):
         self.connect_new_device(self._host,self._port)
         self.closed=False
@@ -179,10 +181,16 @@ class Session(AndroidOperation):
         return self._host+":"+self._port
     def stop_session(self):
         self.disconnect_device(self.get_device())
+        self.closed=True
     def is_closed(self):
         return self.closed
     def get_session_id(self):
         return self._unique_session_id
+    def set_time_limit(self,_time_limit):
+        self._time_limit=_time_limit
+        return self
+    def get_time_limit(self):
+        return self._time_limit
 class SessionManager:
     def __init__(self):
         self._sessions=[]
