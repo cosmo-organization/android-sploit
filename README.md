@@ -17,29 +17,35 @@ When you start main.py ask for installing adb if you have already installed pres
 # using Android Sploit API
 # Enable debuging mode in developer option
 # example start and restart and kill ADB server
-from com.cosmo.sploit.tools import ADB<br>
-adb=ADB()<br>
-adb.start_server() #start server for perform operation<br>
-adb.restart_server() #restart server<br>
-adb.kill_server() #kill server<br>
+```Python
+from com.cosmo.sploit.tools import ADB
+adb=ADB()
+adb.start_server() #start server for perform operation
+adb.restart_server() #restart server
+adb.kill_server() #kill server
+```
 # example remove lock-screen
-from com.cosmo.sploit.tools import Session,ADB<br>
-adb=ADB()<br>
-adb.start_server()<br>
-s=Session("localhost","62001") #  62001 port is only work for Nox 5555 for android devices and enter IP address<br>
-s.set_shell_mode(_mode="") # su is used for super user mode use _mode='su' on super user supported device or emulater<br>
-s.start_session()<br>
-s.remove_screen_lock(s.get_device()) <br>
-adb.kill_server()<br>
+```Python
+from com.cosmo.sploit.tools import Session,ADB
+adb=ADB()
+adb.start_server()
+s=Session("localhost","62001") #  62001 port is only work for Nox 5555 for android devices and enter IP address
+s.set_shell_mode(_mode="") # su is used for super user mode use _mode='su' on super user supported device or emulater
+s.start_session()
+s.remove_screen_lock(s.get_device()) 
+adb.kill_server()
+```
 # Use our CodeLight tools for more interactive code
 # Example using CodeLight tool
-from com.cosmo.sploit.codelight.codelighttool import CodeLightTool<br>
-cl=CodeLightTool()<br>
-cl.start_server()<br>
-cl.create_session(_host_ip="localhost",_host_port="62001",_id="1")<br>
-cl.bind_active_session("1")<br>
-cl.remove_screen_lock()<br>
-cl.disconnect_device()<br>
+```Python
+from com.cosmo.sploit.codelight.codelighttool import CodeLightTool
+cl=CodeLightTool()
+cl.start_server()
+cl.create_session(_host_ip="localhost",_host_port="62001",_id="1")
+cl.bind_active_session("1")
+cl.remove_screen_lock()
+cl.disconnect_device()
 cl.stop_server()
+```
 # Codelight with ConsoleImage
 ![](images/codelight.PNG)
