@@ -24,7 +24,7 @@ adb.start_server() #start server for perform operation
 adb.restart_server() #restart server
 adb.kill_server() #kill server
 ```
-# example remove lock-screen
+# example remove lock-screen !
 ```Python
 from com.cosmo.sploit.tools import Session,ADB
 adb=ADB()
