@@ -20,7 +20,7 @@ When you start main.py ask for installing adb if you have already installed pres
 # Enable debuging mode in developer option
 ---
 # example start and restart and kill ADB server
-```Python
+```python
 from com.cosmo.sploit.tools import ADB
 adb=ADB()
 adb.start_server() #start server for perform operation
@@ -29,7 +29,7 @@ adb.kill_server() #kill server
 ```
 ---
 # example remove lock-screen !
-```Python
+```python
 from com.cosmo.sploit.tools import Session,ADB
 adb=ADB()
 adb.start_server()
@@ -42,7 +42,7 @@ adb.kill_server()
 ---
 > Use our CodeLight tools for more interactive code
 # Example using CodeLight tool
-```Python
+```python
 from com.cosmo.sploit.codelight.codelighttool import CodeLightTool
 cl=CodeLightTool()
 cl.start_server()
