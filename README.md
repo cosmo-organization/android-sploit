@@ -55,6 +55,12 @@ cl.disconnect_device()
 cl.stop_server()
 ```
 ---
+> Vector Image Processing
+```python
+from com.cosmo.sploit.codelight.consoleimage import ConsoleImage
+ci=ConsoleImage(_image_path="hello.png") # fully vector image and transparency, 32x32 or 64x64
+```
+---
 # Codelight with ConsoleImage
 ![](images/codelight.PNG)
 ---
