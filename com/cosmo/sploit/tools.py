@@ -61,7 +61,7 @@ class AndroidOperation(DeviceConnection):
 
     #Uninstall application from device
     def uninstall_app(self,_connected_device_name,_installed_apk_package):
-        self.adb_c(f'-s {connected_device_name} uninstall {_installed_apk_package}')
+        self.adb_c(f'-s {_connected_device_name} uninstall {_installed_apk_package}')
     #Record screen for sometimes and store in _where_to_store="C:\Your Name\Your Directory"
     def screen_recording(self,_connected_device_name,_where_in_device,_where_to_store,_time_limit):
         self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} screenrecord --time-limit {_time_limit} '{_where_in_device}'")
