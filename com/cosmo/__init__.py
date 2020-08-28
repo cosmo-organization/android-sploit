@@ -1,1 +1,1 @@
-print("A virtual Company : cosmo")
+print("Goto:https://cosmo-organization.github.io/android-sploit")
