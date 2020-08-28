@@ -18,7 +18,8 @@ class ADB:
     def start_server(self):
         self.adb_c("start-server")
     def restart_server(self):
-        self.adb_c('kill-server && start-server')
+        self.adb_c("kill-server")
+        self.adb_c("start-server")
 #This class used for handling device connections
 class DeviceConnection(ADB):
     def __init__(self):
@@ -57,60 +58,60 @@ class AndroidOperation(DeviceConnection):
         self.adb_c(f"-s {_connected_device_name} shell")
     #Install apk on _connected_device_name=IP:port ,_installable_apk_location="C:\User Name\Your computer directory"
     def install_apk(self,_connected_device_name,_installable_apk_location):
-        self.adb_c(f'-s {_connected_device_name} install {_installable_apk_location}')
+        self.adb_c(f'-s {_connected_device_name} install "{_installable_apk_location}"')
 
     #Uninstall application from device
     def uninstall_app(self,_connected_device_name,_installed_apk_package):
-        self.adb_c(f'-s {_connected_device_name} uninstall {_installed_apk_package}')
+        self.adb_c(f'-s {connected_device_name} uninstall "{_installed_apk_package}"')
     #Record screen for sometimes and store in _where_to_store="C:\Your Name\Your Directory"
     def screen_recording(self,_connected_device_name,_where_in_device,_where_to_store,_time_limit):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} screenrecord --time-limit {_time_limit} '{_where_in_device}'")
-        self.adb_c(f"-s {_connected_device_name} pull {_where_in_device} '{_where_to_store}'")
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()}  rm '{_where_in_device}'")
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} screenrecord --time-limit {_time_limit} "{_where_in_device}"')
+        self.adb_c(f'-s {_connected_device_name} pull "{_where_in_device}" "{_where_to_store}"')
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()}  rm "{_where_in_device}"')
     #Take Screen Short of device and store in your computer
     def screen_short(self,_connected_device_name,_where_in_device,_where_to_store):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} screencap '{_where_in_device}'")
-        self.adb_c(f"-s {_connected_device_name} pull '{_where_in_device}' '{_where_to_store}'")
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} rm '{_where_in_device}'")
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} screencap "{_where_in_device}"')
+        self.adb_c(f'-s {_connected_device_name} pull "{_where_in_device}" "{_where_to_store}"')
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} rm "{_where_in_device}"')
     #Show all list of files and folder in connected device specify _parent_folder="/storage/" or"your choice how much you know"
     def show_list_files_and_directories(self,_connected_device_name,_parent_folder):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} ls '/{_parent_folder}'")
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} ls "{_parent_folder}"')
     #Import file of android device in your computer
     def import_file(self,_connected_device_name,_remote_file_or_folder="storage/",_where_to_store="C:\\"):
-        self.adb_c(f"-s {_connected_device_name} pull {_remote_file_or_folder} {_where_to_store}")
+        self.adb_c(f'-s {_connected_device_name} pull "{_remote_file_or_folder}" "{_where_to_store}"')
     #export file from computer to android device
     def export_file(self,_connected_device_name,_remote_folder="storage/",_computer_file="adb"):
-        self.adb_c(f"-s {_connected_device_name} push {_computer_file} {_remote_folder}")
+        self.adb_c(f'-s {_connected_device_name} push "{_computer_file}" "{_remote_folder}"')
     #Reboot device
     def reboot_device(self,_connected_device_name):
-        self.adb_c(f"-s {_connected_device_name} reboot")
+        self.adb_c(f'-s {_connected_device_name} reboot')
     #Show all log cat
     def show_all_log_cat(self,_connected_device_name):
-        self.adb_c(f"-s {_connected_device_name} logcat")
+        self.adb_c(f'-s {_connected_device_name} logcat')
     #Shhow System info
     def show_system_info(self,_connected_device_name):
-        self.adb_c(f"-s {_connected_device_name} dumpsys")
+        self.adb_c(f'-s {_connected_device_name} dumpsys')
     #show all packages installed on android device
     def package_manager(self,_connected_device_name):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} pm list packages -f")
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} pm list packages -f')
     #Launch an app  using package_name
     def launch_app(self,_connected_device_name,_app_package):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} monkey -p {_app_package} -v 500")
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} monkey -p {_app_package} -v 500')
     #Grab wpa
     def grab_wpa(self,_connected_device_name,_location,_where_in_device,_callable):
         try:
-            self.adb_c(f"-s { _connected_device_name } {self.get_shell_mode()} -c 'cp /data/misc/wifi/wpa_supplicant.conf {_where_in_device}'")
-            self.adb_c(f"-s { _connected_device_name } pull '{_where_in_device}/wpa_supplicant.conf' {_location}")
-            self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} rm {_where_in_device}/wpa_supplicant.conf")
+            self.adb_c(f'-s { _connected_device_name } {self.get_shell_mode()} -c "cp /data/misc/wifi/wpa_supplicant.conf" "{_where_in_device}"')
+            self.adb_c(f'-s { _connected_device_name } pull "{_where_in_device}/wpa_supplicant.conf"" "{_location}"')
+            self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} rm "{_where_in_device}/wpa_supplicant.conf"')
         except KeyboardInterrupt:
             _callable()
     #Show WLAN IP ADDRESS
     def show_wlan0_ip(self,_connected_device_name):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} ip address show wlan0")
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} ip address show wlan0')
     #Import an apk of pre-installed application of android device _installed_app_package="com.cosmo.sploit.metasploit.MetaTool" _location="Where to store in your computer pkg_with_name="where is apk stored in android device""
     def pull_apk(self,_connected_device_name,_installed_app_package,_location,_pkg_with_name):
-        self.adb_c(f"-s{_connected_device_name} {self.get_shell_mode()} pm path {_installed_app_package}")
-        self.adb_c(f"-s {_connected_device_name} pull '{_pkg_with_name}' '{_location}'")
+        self.adb_c(f'-s{_connected_device_name} {self.get_shell_mode()} pm path "{_installed_app_package}"')
+        self.adb_c(f'-s {_connected_device_name} pull "{_pkg_with_name}" "{_location}"')
     #Show Battery Information
     def battery_info(self,_connected_device_name):
         self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} dumpsys battery")
@@ -133,30 +134,33 @@ class AndroidOperation(DeviceConnection):
         self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} rm /data/system/locksettings.db-shm")
     #Press key by key code
     def press_key(self,_connected_device_name,_key_code):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} input keyevent "+_key_code)
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} input keyevent {_key_code}')
     #show current activity on android device
     def show_current_activity(self,_connected_device_name):
         self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} dumpsys activity")
     #Hide or unhide application app_pkg="com.app.example" visibility ="hide" or "unhide"
-    def app_visibility(self,_connected_device_name,_app_pkg,_visibility):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} pm "+_visibility+" "+_app_pkg)
+    def app_visibility(self,_connected_device_name,_app_pkg,_visibility="hide"):
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} pm {_visibility} "{_app_pkg}"')
     #Enable or disable bluetooth _operation="true" or "false"
     def blue_tooth_activation(self,_connected_device_name,_operation):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} am broadcast -a android.intent.action.BLUETOOTH_ENABLE --ez state "+_operation)
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} am broadcast -a android.intent.action.BLUETOOTH_ENABLE --ez state {_operation}')
     def make_a_call(self,_connected_device_name,_contact_number):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} am start -a android.intent.action.CALL -d tel:"+_contact_number)
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} am start -a android.intent.action.CALL -d tel:{_contact_number}')
     def send_sms(self,_connected_device_name,_sms_body,_contact_number):
         self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} am start -a android.intent.action.SENDTO -d sms:{_contact_number} --es sms_body '{_sms_body}' --ez exit_on_sent true")
         self.press_key(_connected_device_name,"22")
         self.press_key(_connected_device_name,"66")
     def send_email(self,_connected_device_name,_to,_subject,_body):
-        self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} am start -n com.google.android.gm/com.google.android.gm.ComposeActivityGmail -d email:{_to} --es subject '{_subject}' --es body '{_body}'")
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} am start -n com.google.android.gm/com.google.android.gm.ComposeActivityGmail -d email:"{_to}" --es subject "{_subject}" --es body "{_body}"')
     def get_prop(self,_connected_device_name):
         self.adb_c(f"-s {_connected_device_name} {self.get_shell_mode()} getprop")
     def reboot_recovery(self,_connected_device_name):
         self.adb_c(f"-s {_connected_device_name} reboot-recovery")
     def reboot_fastboot(self,_connected_device_name):
         self.adb_c(f"-s {_connected_device_name} reboot fastboot")
+    #_file_name="/storage/emulated/abc.t
+    def delete_file(self,_connected_device_name,_file_name):
+        self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} rm "{_file_name}"')
 
 class ConsoleWindow:
     def __init__(self):
