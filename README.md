@@ -22,6 +22,13 @@ Android Sploit API for Python development on cross-platform
   <td>Upcomming dynamic error reporting</td>
   <td><a href="#">Download</a></td>
 </tr>
+</table>
+<span>Help on setup</span><br>
+
+```
+ first of all need to install adb tools and setup in envirnoment variable
+```
+<br>
 <span>Documentation</span>
 
 ```Help on class ADB in module com.cosmo.sploit.tools:
@@ -61,4 +68,3 @@ class ADB(builtins.object)
  |  __weakref__
  |      list of weak references to the object (if defined)
 ```
-</table>
