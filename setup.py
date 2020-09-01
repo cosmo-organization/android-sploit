@@ -4,12 +4,12 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="android-sploit-YOUR-USERNAME-HERE", # Replace with your own username
+    name="android-sploit-sonuaryan", # Replace with your own username
     version="1.0",
     author="Sonu Aryan",
     author_email="sonuaryan76448002@gmail.com",
     description="A package with adb command sets",
-    long_description="README.md",
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/cosmo-organization/android-sploit",
     packages=setuptools.find_packages(),
