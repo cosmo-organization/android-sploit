@@ -5,12 +5,7 @@ class ADB:
     def __init__(self):
         self.adb="adb "
     def configure(self):
-        if platform.platform().startswith("Win"):
-            os.chdir("adb")
-        else:
-            an=input("You have adb pre-installed(Y/n):")
-            if an == 'n':
-                os.system("sudo apt install adb")
+        pass
     def adb_c(self,sub_command):
         os.system(self.adb+sub_command)
     def kill_server(self):
