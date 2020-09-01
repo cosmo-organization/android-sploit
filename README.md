@@ -1,5 +1,5 @@
 # AndroidSploitAPI
-Android Sploit API for Python development on windows or linux both
+Android Sploit API for Python development on cross-platform
 <br>
 <table>
 <tr>
