@@ -22,6 +22,7 @@ Android Sploit API for Python development on cross-platform
   <td>Upcomming dynamic error reporting</td>
   <td><a href="#">Download</a></td>
 </tr>
+<span>Documentation</span>
 
 ```Help on class ADB in module com.cosmo.sploit.tools:
 
@@ -47,10 +48,10 @@ class ADB(builtins.object)
  |      Same as adb kill-server
  |  
  |  restart_server(self)
- |      Sam as adb kill-server & start-server
+ |      Same as adb kill-server & start-server
  |  
  |  start_server(self)
- |  
+ |      Same as adb start-server
  |  ----------------------------------------------------------------------
  |  Data descriptors defined here:
  |  
