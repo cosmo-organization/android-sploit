@@ -1,6 +1,19 @@
 # AndroidSploitAPI
 Android Sploit API for Python development on cross-platform
 <br>
+
+`download adb tools on window`<br>
+<table>
+ <tr>
+ <th>Filename</th>
+ <th>Download</th>
+ </tr>
+ <tr>
+  <td>adb.rar</td>
+  <td><a href="https://github.com/cosmo-organization/android-sploit/releases/download/v1.0/adb.zip">Download(only window)</td>
+  </tr>
+ </table>
+
 <table>
 <tr>
  <th>version</th>
