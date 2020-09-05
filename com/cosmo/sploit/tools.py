@@ -1,4 +1,3 @@
-import os
 '''
 @author Sonu Aryan(cosmo-developer)
 BSD 3-Clause License
@@ -32,6 +31,7 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 '''
+import os
 class ADB:
     def __init__(self):
         self.adb="adb "
