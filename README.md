@@ -36,5 +36,14 @@ Android Sploit API for Python development on cross-platform
 <br>
 <span>Documentation</span>
 
-```Help on class ADB in module com.cosmo.sploit.tools:
+`Test on adb`<br>
 
+`1. copy adb_Test.py from test folder and paste with com folder`<br>
+Your folder looking like<br>
+Start nox<br>
+```
+com
+test
+adb_Test.py
+```
+start adb_Test.py
