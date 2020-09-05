@@ -34,16 +34,3 @@ Android Sploit API for Python development on cross-platform
  first of all need to install adb tools and setup in envirnoment variable
 ```
 <br>
-<span>Documentation</span>
-
-`Test on adb`<br>
-
-`1. copy adb_Test.py from test folder and paste with com folder`<br>
-Your folder looking like<br>
-Start nox<br>
-```
-com
-test
-adb_Test.py
-```
-start adb_Test.py
