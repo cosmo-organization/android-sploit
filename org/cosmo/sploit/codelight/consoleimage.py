@@ -32,7 +32,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 '''
 from PIL import Image
-from com.cosmo.sploit.codelight.exception.codelightexceptions import InvalidImageSize
+from org.cosmo.sploit.codelight.exception.codelightexceptions import InvalidImageSize
 from colorama import Fore,init,Back
 class ConsoleImage:
     def __init__(self,_image_path):

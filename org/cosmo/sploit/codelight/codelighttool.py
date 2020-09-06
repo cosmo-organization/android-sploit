@@ -31,11 +31,11 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 '''
-from com.cosmo.sploit.tools import \
+from org.cosmo.sploit.tools import \
     Session,\
     SessionManager,\
     AndroidOperation
-from com.cosmo.sploit.codelight.exception.codelightexceptions import \
+from org.cosmo.sploit.codelight.exception.codelightexceptions import \
     SessionUnbindedException,\
     APKUnbindedException,\
     APKNotFoundException,\
@@ -293,3 +293,20 @@ class CodeLightTool:
             _connected_device_name=self._binded_session.get_device(),
             _file_name=self._binded_device_file
         )
+    def reboot_recovery(self):
+        self.__verify_session()
+        self._ao.reboot_recovery(
+            _connected_device_name=self._binded_session.get_device()
+        )
+    def reboot_bootloader(self):
+        self.__verify_session()
+        self._ao.reboot_bootloader(
+            _connected_device_name=self._binded_session.get_device()
+        )
+    def restart_with_root(self):
+        self.__verify_session()
+        self._ao.restart_root(
+            _connected_device_name=self._binded_session.get_device()
+        )
+    def usb_devices(self):
+        self._ao.devices_usb()

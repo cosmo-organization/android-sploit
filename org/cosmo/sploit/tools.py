@@ -71,6 +71,7 @@ class DeviceConnection(ADB):
         self.adb_c(f"-s {_connected_device_name} forward tcp:{_port_device} tcp:{_forward_port}")
     def disconnect_device(self,_connected_device_name):
         self.adb_c(f"disconnect {_connected_device_name}")
+
 #This class used for performing various types of android operation
 class AndroidOperation(DeviceConnection):
     def __init__(self):
@@ -187,6 +188,15 @@ class AndroidOperation(DeviceConnection):
     #_file_name="/storage/emulated/abc.t
     def delete_file(self,_connected_device_name,_file_name):
         self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} rm "{_file_name}"')
+    #Feature 1.1
+    def reboot_recovery(self,_connected_device_name):
+        self.adb_c(f'-s {_connected_device_name} reboot recovery')
+    def reboot_bootloader(self,_connected_device_name):
+        self.adb_c(f'-s {_connected_device_name} reboot-bootloader')
+    def restart_root(self,_connected_device_name):
+        self.adb_c(f'-s {_connected_device_name} root')
+    def devices_usb(self):
+        self.adb_c('usb')
 
 class ConsoleWindow:
     def __init__(self):
