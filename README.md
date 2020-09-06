@@ -24,8 +24,13 @@ Android Sploit API for Python development on cross-platform
 </tr>
 <tr>
   <td>1.0</td>
-  <td>CodeLightTool</td>
+  <td>full featured</td>
   <td><a href="https://github.com/cosmo-organization/android-sploit/archive/v1.0.zip">Download</a></td>
+</tr>
+<tr>
+ <td>1.1</td>
+ <td>extended feature</td>
+ <td><a href="#">Download</a></td>
 </tr>
 </table>
 <span>Help on setup</span><br>
