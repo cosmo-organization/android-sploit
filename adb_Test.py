@@ -1,5 +1,4 @@
-
-from com.cosmo.sploit.codelight.codelighttool import CodeLightTool
+from org.cosmo.sploit.codelight.codelighttool import CodeLightTool
 clt=CodeLightTool()
 clt.restart_server()
 try:
