@@ -185,7 +185,7 @@ class AndroidOperation(DeviceConnection):
         self.adb_c(f"-s {_connected_device_name} reboot-recovery")
     def reboot_fastboot(self,_connected_device_name):
         self.adb_c(f"-s {_connected_device_name} reboot fastboot")
-    #_file_name="/storage/emulated/abc.t
+    #_file_name="/storage/emulated/abc.t"
     def delete_file(self,_connected_device_name,_file_name):
         self.adb_c(f'-s {_connected_device_name} {self.get_shell_mode()} rm "{_file_name}"')
     #Feature 1.1
@@ -197,13 +197,8 @@ class AndroidOperation(DeviceConnection):
         self.adb_c(f'-s {_connected_device_name} root')
     def devices_usb(self):
         self.adb_c('usb')
-
-class ConsoleWindow:
-    def __init__(self):
-        pass
-    @staticmethod
-    def clear_src():
-        os.system('cls')
+    def open_sqlite3(self,_connected_device_name,_db_filename="example.db"):
+        self.adb_c(f'-s {_connected_device_name} shell sqlite3')
 
 class Session(AndroidOperation):
     def __init__(self,_host,_port,_unique_session_id=None):
